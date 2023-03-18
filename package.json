@@ -1,0 +1,52 @@
+{
+	"name": "Electron Windows Mica template",
+	"version": "1.0.0",
+	"private": true,
+	"description": "",
+	"author": "",
+	"scripts": {
+		"serve": "vite preview",
+		"build": "vite build",
+		"dev": "vite"
+	},
+	"main": "dist/electron/index.js",
+	"dependencies": {
+		"@electron/remote": "^2.0.8",
+		"@imengyu/vue3-context-menu": "^1.1.5",
+		"@mdi/font": "5.9.55",
+		"color": "^4.2.3",
+		"material-design-icons-iconfont": "^6.7.0",
+		"mica-electron": "^1.1.7",
+		"vue-dock-menu": "^1.1.0",
+		"vuetify": "^3.0.0-beta.5",
+		"vuex": "^4.0.2"
+	},
+	"devDependencies": {
+		"@types/webfontloader": "^1.0.0",
+		"@vitejs/plugin-vue": "^2.3.3",
+		"electron": "^22.0.0",
+		"electron-rebuild": "^3.2.9",
+		"typescript": "^4.7.4",
+		"vite": "^2.9.13",
+		"vite-plugin-electron": "^0.8.1",
+		"vite-plugin-vuetify": "^1.0.0-alpha.0",
+		"vue": "^3.2.37",
+		"vue-cli-plugin-vuetify": "~2.5.1",
+		"vue-tsc": "^0.39.4"
+	},
+	"engines": {
+		"node": ">=14.17.0"
+	},
+	"env": {
+		"VITE_DEV_SERVER_HOST": "127.0.0.1",
+		"VITE_DEV_SERVER_PORT": 3344
+	},
+	"keywords": [
+		"electron",
+		"rollup",
+		"vite",
+		"vue3",
+		"vue"
+	],
+	"license": "MIT"
+}

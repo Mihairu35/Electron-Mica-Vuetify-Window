@@ -1,0 +1,159 @@
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+:root {
+	--base-radius: 8px;
+	--windowbar-height: 48px;
+	--app-height: calc(100vh - var(--windowbar-height));
+	--font-size-main: 14px;
+	--font-size-small: 14px;
+}
+
+body,
+html {
+	overflow: hidden;
+	font-size: 14px;
+	font-family: sans-serif;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	transition: background 0.3s ease-in-out;
+}
+
+body.unfocused {
+	background: rgb(var(--v-theme-window-unfocused));
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: normal;
+	margin-bottom: 10px;
+	display: block;
+}
+
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+	background: none;
+	border-radius: 360px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 360px;
+	border: rgb(var(--v-theme-border)) 1px solid;
+	transition: all 0.2s ease-in-out !important;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+* {
+	letter-spacing: normal !important;
+	font-weight: 400;
+}
+
+p {
+	display: block;
+	margin-bottom: 10px;
+}
+
+hr {
+	height: 1px;
+	border: 0px;
+	background: rgba(255, 255, 255, 0.1);
+	display: block;
+	margin: 15px 0px;
+}
+
+p,
+div,
+span {
+	user-select: none;
+}
+
+ul {
+	padding: 0px 15px;
+}
+
+img {
+	pointer-events: none;
+}
+
+.no-animation {
+	transition: none !important;
+}
+
+.v-application {
+	background: none !important;
+}
+
+.text-selectable {
+	user-select: all;
+}
+
+.vertical-scroll {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.mx-context-menu {
+	box-shadow: rgb(0 0 0 / 10%) 1px 5px 15px;
+	padding: 5px 0px;
+}
+
+.mx-context-menu .mx-context-menu-item {
+	padding: 10px 15px 10px 15px;
+	transition: 0.2s;
+}
+
+.v-theme--ThemeDark .mx-context-menu {
+	background: rgba(var(--v-theme-window-bar), 1) !important;
+	border: rgba(255, 255, 255, 0.09) 1px solid;
+}
+
+.v-theme--ThemeDark .mx-context-menu .mx-context-menu-item {
+	color: var(--v-theme-text);
+}
+
+.v-theme--ThemeDark .mx-context-menu .mx-context-menu-item:hover {
+	background: rgba(0, 0, 0, 0.25);
+}
+
+.v-theme--ThemeLight .mx-context-menu {
+	background: rgba(var(--v-theme-window-bar), 1) !important;
+}
+
+.v-theme--ThemeLight .mx-context-menu .mx-context-menu-item {
+	color: var(--v-theme-text);
+}
+
+.v-theme--ThemeLight .mx-context-menu .mx-context-menu-item:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.app__content {
+	word-wrap: break-word;
+	height: var(--app-height);
+	overflow-y: scroll !important;
+}
+
+.window-inner-padding {
+	padding: 20px;
+}
+
+.v-main {
+	padding-top: 0px;
+}
