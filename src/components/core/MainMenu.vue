@@ -85,11 +85,11 @@ export default {
 	backdrop-filter: blur(5px);
 }
 
-.component__WindowBar-menu:deep() .menu-wrapper li {
-	padding: 8px 15px 8px 25px !important;
+.component__WindowBar-menu:deep() .menu-wrapper li:not(.divider) {
 	transition: 0.1s;
 	color: var(--v-theme-text);
 	border-radius: var(--base-radius);
+	text-transform: none;
 }
 
 .component__WindowBar-menu:deep() .menu-item {
@@ -160,5 +160,9 @@ export default {
 
 .component__WindowBar-menu:deep() .name-container {
 	color: var(--v-theme-text) !important;
+}
+
+.component__WindowBar-menu:deep() .divider {
+	pointer-events: none;
 }
 </style>

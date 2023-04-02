@@ -1,13 +1,7 @@
-import {
-	app,
-	BrowserWindow,
-	shell,
-	ipcMain,
-	systemPreferences,
-} from "electron";
+import { app, BrowserWindow, shell, systemPreferences } from "electron";
 import { release } from "os";
 import { join } from "path";
-import { PARAMS, MicaBrowserWindow, IS_WINDOWS_11, WIN10 } from "mica-electron";
+import { MicaBrowserWindow, IS_WINDOWS_11, WIN10 } from "mica-electron";
 
 let firstFocus = false; //smooth open window and theme change fix
 
@@ -16,6 +10,8 @@ let win: MicaBrowserWindow | BrowserWindow = null;
 const initWidth: number = 1100;
 const initHeight: number = 700;
 const contrastWindowBorder: boolean = false;
+
+require("events").EventEmitter.defaultMaxListeners = 100;
 
 export const ROOT_PATH = {
 	dist: join(__dirname, "../../dist"),
@@ -56,8 +52,6 @@ async function createWindow() {
 			autoHideMenuBar: true,
 			frame: false,
 			show: true,
-			//titleBarStyle: "hidden",
-			//titleBarOverlay: true,
 		});
 
 		if (IS_WINDOWS_11) {
@@ -70,7 +64,7 @@ async function createWindow() {
 		//windows theme border
 		systemPreferences.on("accent-color-changed", function () {
 			if (IS_WINDOWS_11) {
-				if(contrastWindowBorder) {
+				if (contrastWindowBorder) {
 					let accentColorHEX =
 						"#" + systemPreferences.getAccentColor().substr(0, 6);
 
@@ -85,7 +79,7 @@ async function createWindow() {
 
 		win.on("focus", function () {
 			if (IS_WINDOWS_11) {
-				if(contrastWindowBorder) {
+				if (contrastWindowBorder) {
 					let accentColorHEX =
 						"#" + systemPreferences.getAccentColor().substr(0, 6);
 
@@ -109,11 +103,11 @@ async function createWindow() {
 
 		win.on("blur", function () {
 			if (IS_WINDOWS_11) {
-				if(contrastWindowBorder) {
+				if (contrastWindowBorder) {
 					let colorHEX = systemPreferences
 						.getColor("window-frame")
 						.substr(0, 7);
-						
+
 					win.setBorderColor(colorHEX);
 				}
 
@@ -137,7 +131,7 @@ async function createWindow() {
 			},
 			autoHideMenuBar: true,
 			frame: false,
-			show: false,
+			show: true,
 		});
 	}
 
@@ -179,30 +173,5 @@ app.on("second-instance", () => {
 	if (win) {
 		if (win.isMinimized()) win.restore();
 		win.focus();
-	}
-});
-
-app.on("activate", () => {
-	const allWindows = BrowserWindow.getAllWindows();
-	if (allWindows.length) {
-		allWindows[0].focus();
-	} else {
-		createWindow();
-	}
-});
-
-ipcMain.handle("open-win", (event, arg) => {
-	const childWindow = new BrowserWindow({
-		webPreferences: {
-			preload: join(ROOT_PATH.electron, "preload.ts"),
-			nodeIntegration: true,
-			contextIsolation: false,
-		},
-	});
-
-	if (app.isPackaged) {
-		childWindow.loadFile(indexHtml, { hash: arg });
-	} else {
-		childWindow.loadURL(`${url}/#${arg}`);
 	}
 });
